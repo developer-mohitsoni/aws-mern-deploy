@@ -31,6 +31,4 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/aws-mern-deploy:${{ github.sha }}
       - name: Run Docker Container
         run: |
-          docker stop aws-mern-deploy || true
-          docker rm aws-mern-deploy || true
           docker run -d --name aws-mern-deploy -p 4000:4000 ${{ secrets.DOCKER_USERNAME }}/aws-mern-deploy:${{ github.sha }} -e MONGO_PASSWORD='${{secrets.MONGO_PASSWORD}}'
